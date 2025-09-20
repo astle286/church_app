@@ -1,0 +1,9 @@
+<h2>Eligible Members for Tax</h2>
+<ul>
+  {% for member in members %}
+    <li>
+      {{ member.name }} ({{ member.relation }}) - {{ member.dob.strftime('%Y-%m-%d') }}
+      <a href="{{ url_for('main.add_tax', member_id=member.id) }}">Add Tax</a>
+    </li>
+  {% endfor %}
+</ul>

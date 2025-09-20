@@ -1,0 +1,14 @@
+<h2>Search Members</h2>
+<form method="POST">
+  Name: <input type="text" name="query">
+  <input type="submit" value="Search">
+</form>
+
+{% if results %}
+  <h3>Results:</h3>
+  <ul>
+    {% for member in results %}
+      <li>{{ member.name }} ({{ member.relation }}) - {{ member.family.name }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

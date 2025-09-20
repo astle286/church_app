@@ -1,0 +1,66 @@
+<h2>Tax Summary Dashboard</h2>
+<form method="POST" action="{{ url_for('main.export_filtered_excel') }}">
+  <label>Start Date:</label>
+  <input type="date" name="start_date">
+  <label>End Date:</label>
+  <input type="date" name="end_date">
+  <label>Term:</label>
+  <select name="term">
+    <option value="">All</option>
+    <option value="1">1st Term</option>
+    <option value="2">2nd Term</option>
+  </select>
+  <button type="submit">📤 Export Filtered Excel</button>
+</form>
+<form method="POST" action="{{ url_for('main.export_filtered_pdf') }}">
+  <!-- same filters as Excel -->
+  <input type="date" name="start_date">
+  <input type="date" name="end_date">
+  <select name="term">
+    <option value="">All</option>
+    <option value="1">1st Term</option>
+    <option value="2">2nd Term</option>
+  </select>
+  <button type="submit">🖨️ Export Filtered PDF</button>
+</form>
+
+<form method="POST" action="{{ url_for('main.export_group_excel') }}">
+  <!-- same filters -->
+  <input type="date" name="start_date">
+  <input type="date" name="end_date">
+  <select name="term">
+    <option value="">All</option>
+    <option value="1">1st Term</option>
+    <option value="2">2nd Term</option>
+  </select>
+  <button type="submit">📊 Export Group-Wise Excel</button>
+</form>
+<form method="POST" action="{{ url_for('main.export_group_pdf') }}">
+  <!-- same filters -->
+  <input type="date" name="start_date">
+  <input type="date" name="end_date">
+  <select name="term">
+    <option value="">All</option>
+    <option value="1">1st Term</option>
+    <option value="2">2nd Term</option>
+  </select>
+  <button type="submit">📊 Export Group-Wise PDF</button>
+</form>
+<a href="{{ url_for('main.export_excel') }}">
+  <button>📤 Export to Excel</button>
+</a>
+<a href="{{ url_for('main.export_pdf') }}">
+  <button>🖨️ Export to PDF</button>
+</a>
+<table border="1">
+  <tr>
+    <th>Year-Term</th>
+    <th>Total Amount</th>
+  </tr>
+  {% for key, total in summary.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ total }}</td>
+    </tr>
+  {% endfor %}
+</table>

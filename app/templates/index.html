@@ -1,0 +1,19 @@
+<h2>Families</h2>
+<a href="{{ url_for('main.add_family') }}">➕ Add Family</a> |
+<a href="{{ url_for('main.eligible_members') }}">👨‍👦 Eligible Members</a> |
+<a href="{{ url_for('main.dashboard_default') }}">📊 Tax Dashboard</a> |
+<a href="{{ url_for('main.search') }}">🔍 Search Members</a>
+
+<ul>
+  {% for family in families %}
+    <li>
+      {{ family.name }}
+      <a href="{{ url_for('main.add_member', family_id=family.id) }}">➕ Add Member</a>
+      <a href="{{ url_for('main.view_family', family_id=family.id) }}">👁️ View</a>
+    </li>
+    <li>Total Families: {{ families|length }}</li>
+  <li>Total Members: {{ total_members }}</li>
+  <li>Total Tax Collected: ₹{{ total_tax }}</li>
+  {% endfor %}
+</ul>
+
