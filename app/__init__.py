@@ -19,10 +19,3 @@ def create_app():
     app.register_blueprint(main)
     
     return app
-
-from flask import Flask
-from app.models import db
-
-@app.cli.command("init-db")
-def init_db():
-    db.create_all()
