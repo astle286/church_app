@@ -12,16 +12,26 @@ class Family(db.Model):
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
     name = db.Column(db.String(100), nullable=False)
 
+from datetime import date
+
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    family_id = db.Column(db.Integer, db.ForeignKey('family.id'))
+    family_id = db.Column(db.Integer, db.ForeignKey('family.id'), nullable=False)
     name = db.Column(db.String(100), nullable=False)
-    dob = db.Column(db.Date)
+    dob = db.Column(db.Date, nullable=False)
     gender = db.Column(db.String(10))
     mobile = db.Column(db.String(15))
     wedding_date = db.Column(db.Date)
     is_deceased = db.Column(db.Boolean, default=False)
     relation = db.Column(db.String(20))  # father, mother, child
+
+    @property
+    def age(self):
+        if not self.dob:
+            return None
+        today = date.today()
+        return today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+
 
 class TaxRecord(db.Model):
     id = db.Column(db.Integer, primary_key=True)
