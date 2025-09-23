@@ -1,0 +1,19 @@
+<h2>Filtered Tax Report</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Year</th>
+    <th>Term</th>
+    <th>Amount</th>
+    <th>Paid On</th>
+  </tr>
+  {% for r in records %}
+    <tr>
+      <td>{{ r.name }}</td>
+      <td>{{ r.year }}</td>
+      <td>{{ r.term }}</td>
+      <td>{{ r.amount }}</td>
+      <td>{{ r.paid_on.strftime('%Y-%m-%d') }}</td>
+    </tr>
+  {% endfor %}
+</table>

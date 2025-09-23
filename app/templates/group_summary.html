@@ -1,0 +1,13 @@
+<h2>Group-Wise Tax Summary</h2>
+<table border="1">
+  <tr>
+    <th>Group</th>
+    <th>Total Tax Collected</th>
+  </tr>
+  {% for row in summary %}
+    <tr>
+      <td>{{ row.group_name }}</td>
+      <td>{{ row.total }}</td>
+    </tr>
+  {% endfor %}
+</table>
