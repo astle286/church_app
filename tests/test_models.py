@@ -1,3 +1,5 @@
+import sys
+sys.path.append("/app")
 from app.models import db, Family, Member
 
 def test_add_family_with_members(app):
