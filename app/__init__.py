@@ -19,3 +19,16 @@ def create_app():
     app.register_blueprint(main)
     
     return app
+
+from flask import Flask
+from app.models import db
+
+app = Flask(__name__)
+# your config here...
+
+@app.cli.command("init-db")
+def init_db():
+    """Initialize the database tables."""
+    with app.app_context():
+        db.create_all()
+        print("✅ Database initialized.")
