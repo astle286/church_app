@@ -18,19 +18,11 @@ def create_app():
     from .routes import main
     app.register_blueprint(main)
     
-    return app
-
-from flask import Flask
-from app.models import db
-
-app = Flask(__name__)
-app.config.from_object(Config)
-db.init_app(app)
-
-@app.cli.command("init-db")
-def init_db():
-    from app.models import db
-    with app.app_context():
+    @app.cli.command("init-db")
+    def init_db():
         db.create_all()
         print("✅ Database initialized.")
+    
+    return app
+
 
