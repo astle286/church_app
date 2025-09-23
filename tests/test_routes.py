@@ -15,4 +15,4 @@ def test_create_family(client):
     response = client.post('/add-family', data={'name': 'Test Family'}, follow_redirects=True)
     assert response.status_code == 200
     assert b'Test Family' in response.data
-    
+    # Further checks can be added to verify database state if needed
