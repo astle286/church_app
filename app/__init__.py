@@ -24,7 +24,8 @@ from flask import Flask
 from app.models import db
 
 app = Flask(__name__)
-# your config here...
+app.config.from_object(Config)
+db.init_app(app)
 
 @app.cli.command("init-db")
 def init_db():
